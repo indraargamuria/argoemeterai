@@ -1,4 +1,4 @@
-@OpexNow.Api_HostAddress = http://localhost:5058
+@OpexNow.Api_HostAddress = http://localhost:5260
 
 GET {{OpexNow.Api_HostAddress}}/weatherforecast/
 Accept: application/json
