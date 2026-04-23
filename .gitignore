@@ -1,0 +1,81 @@
+# -----------------------
+# OS
+# -----------------------
+.DS_Store
+Thumbs.db
+
+# -----------------------
+# IDE / Editor
+# -----------------------
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+
+# -----------------------
+# Logs
+# -----------------------
+*.log
+logs/
+
+# -----------------------
+# Node / React
+# -----------------------
+node_modules/
+dist/
+build/
+coverage/
+npm-debug.log*
+yarn-error.log*
+
+# -----------------------
+# Environment files
+# -----------------------
+.env
+.env.*
+!.env.example
+
+# -----------------------
+# .NET / ASP.NET Core
+# -----------------------
+bin/
+obj/
+
+# Visual Studio temp
+.vs/
+
+# User secrets
+secrets.json
+
+# -----------------------
+# Database local artifacts
+# -----------------------
+*.db
+*.sqlite
+
+# -----------------------
+# Docker overrides/local files
+# -----------------------
+docker-compose.override.yml
+
+# -----------------------
+# Generated uploads (if local storage ever used)
+# -----------------------
+uploads/
+
+# -----------------------
+# MinIO local data (if mounted)
+# -----------------------
+minio-data/
+
+# -----------------------
+# PostgreSQL local volume
+# -----------------------
+postgres-data/
+
+# -----------------------
+# Test results
+# -----------------------
+TestResults/
+*.trx
