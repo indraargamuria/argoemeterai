@@ -1,6 +1,8 @@
 // (Arga) 2026-04-24 - Added for Link to Db Context
 using Microsoft.EntityFrameworkCore;
 using OpexNow.Api.Data;
+using Minio;
+using OpexNow.Api.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +22,27 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(
       builder.Configuration.GetConnectionString("DefaultConnection")
 ));
+
+// (Arga) 2026-04-24 - Added for Link to MinIO
+builder.Services.Configure<MinioSettings>(
+    builder.Configuration.GetSection("Minio")
+);
+
+builder.Services.AddSingleton(sp =>
+{
+    var settings =
+      builder.Configuration
+      .GetSection("Minio")
+      .Get<MinioSettings>();
+
+    return new MinioClient()
+       .WithEndpoint(settings!.Endpoint)
+       .WithCredentials(
+           settings.AccessKey,
+           settings.SecretKey
+       )
+       .Build();
+});
 
 var app = builder.Build();
 
