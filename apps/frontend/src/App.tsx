@@ -32,6 +32,28 @@ function App() {
     await loadCustomers();
   }
 
+  async function uploadFile(
+    e:any
+    ){
+    const file=e.target.files[0];
+
+    const formData=
+      new FormData();
+
+    formData.append(
+      "file",
+      file
+    );
+
+    await fetch(
+    "http://localhost:5260/api/documents/upload",
+    {
+      method:"POST",
+      body:formData
+    });
+
+    alert("Uploaded");
+    }
   return (
    <div style={{padding:30}}>
     <h1>OpexNow</h1>
@@ -61,6 +83,12 @@ function App() {
       ))}
     </ul>
 
+      <h2>Upload Document</h2>
+
+      <input
+      type="file"
+      onChange={uploadFile}
+      />
    </div>
   )
 }
