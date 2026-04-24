@@ -44,6 +44,21 @@ builder.Services.AddSingleton(sp =>
        .Build();
 });
 
+// (Arga) 2026-04-24 - Added for Link to Allow CORS
+builder.Services.AddCors(options =>
+{
+  options.AddPolicy(
+   "frontend",
+   policy =>
+      policy
+       .WithOrigins(
+         "http://localhost:5173"
+       )
+       .AllowAnyHeader()
+       .AllowAnyMethod()
+  );
+});
+
 var app = builder.Build();
 
 // (Arga) 2026-04-24 - Add swagger
@@ -78,6 +93,10 @@ app.MapGet("/weatherforecast", () =>
     return forecast;
 })
 .WithName("GetWeatherForecast");
+
+
+// (Arga) 2026-04-24 - Added for Link to Allow CORS
+app.UseCors("frontend");
 app.MapControllers();
 app.Run();
 
